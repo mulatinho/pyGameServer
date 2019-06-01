@@ -8,3 +8,9 @@ init:
 
 test:
 	py.test
+
+clean:
+	find . -name '*~' -exec rm -rfv '{}' \+
+	find . -name '*pyc' -exec rm -rfv '{}' \+
+	find . -name '__pycache__' -exec rm -rfv '{}' \+
+	find . -name '.pytest_cache' -exec rm -rfv '{}' \+
