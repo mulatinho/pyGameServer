@@ -10,6 +10,9 @@ class GameServer:
     pollFunc = {}; pollEvents = {};
     pollIn = {}; pollOut = {}; pollHUP = {};
     
+    def test(self):
+        print "OK"
+    
     def __init__(self):
         '''GameServer is the the TCP/IP server of the pyGameServer'''
         print "GameServer() init"
@@ -19,7 +22,11 @@ class GameServer:
         self.socketServer.listen(self.user_max)
     
         self.setPollFunction()
-            
+        
+    def getSocket(self):
+        return self.socketServer
+    
+    def serverLoop(self):
         try:
             while True:
                 events = self.pollFunc.poll(1)
@@ -72,11 +79,13 @@ class GameServer:
             self.pollOut = select.EPOLLET
             self.pollHUP = select.EPOLLHUP
             self.pollEvents = select.EPOLLIN | select.EPOLLET
-            self.pollFunc.register(self.socketServer.fileno(), self.pollEvents)
         else:
             self.pollFunc = select.poll()
             self.pollIn = select.POLLIN
             self.pollOut = select.POLLOUT
             self.pollHUP = select.POLLHUP
-            self.pollEvents = select.POLLIN | select.POLLOUT
-            self.pollFunc.register(self.socketServer.fileno(), select.POLLIN | select.POLLOUT)
+            
+        self.pollEvents = self.pollIn | self.pollOut
+            
+            
+        self.pollFunc.register(self.socketServer.fileno(), select.pollEvents)
