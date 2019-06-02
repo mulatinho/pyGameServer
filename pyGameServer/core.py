@@ -1,12 +1,16 @@
-import GameServer
-import time
+import GameServer as GS
+
+class Config:
+    pass
 
 class CoreServer:
+    config = Config()
     def __init__(self):
         '''initial server setup'''
         print "hey, I'm the CoreServer and I exist"
-        self.loopServer()
-    
-    def loopServer(self):
+        self.start()
+
+    def start(self):
         print "method loopServer() here to serve"
-        GameServer.GameServer()
+        instance = GS.GameServer()
+        instance.serverLoop()
