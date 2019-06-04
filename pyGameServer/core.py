@@ -1,9 +1,9 @@
 import GameServer
 import time
 
-class CoreServer:
+class CoreServer(object):
     def __init__(self):
-        '''initial server setup'''
+        """initial server setup"""
         print "hey, I'm the CoreServer and I exist"
         self.loopServer()
     

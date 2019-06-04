@@ -3,7 +3,7 @@ import select
 import time
 from sys import platform
     
-class GameServer:
+class GameServer(object):
     socketServer = None
     user_max = 200
     connections = {}; requests = {}; address = {}; 
@@ -14,7 +14,7 @@ class GameServer:
         print "OK"
     
     def __init__(self):
-        '''GameServer is the the TCP/IP server of the pyGameServer'''
+        """GameServer is the the TCP/IP server of the pyGameServer"""
         print "GameServer() init"
         self.socketServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socketServer.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -73,6 +73,7 @@ class GameServer:
             print "Thats it!"
         
     def setPollFunction(self):
+        """ Set appropriate flags according with OS """
         if platform == "linux" or platform == "linux2":
             self.pollFunc = select.epoll()
             self.pollIn = select.EPOLLIN
@@ -86,6 +87,4 @@ class GameServer:
             self.pollHUP = select.POLLHUP
             
         self.pollEvents = self.pollIn | self.pollOut
-            
-            
         self.pollFunc.register(self.socketServer.fileno(), select.pollEvents)
