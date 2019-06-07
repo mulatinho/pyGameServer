@@ -1,0 +1,12 @@
+rootserver ----> gameserver1   --> client4
+             |                 |
+						 --> gameserver2 ----> client3
+						 |
+						 --> gameserverN --> client1
+						                 |
+														 --> client2
+														 |
+														 --> clientN
+
+
+conn hashToken
