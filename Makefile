@@ -7,7 +7,7 @@ init:
 	pip install -r requirements.txt
 
 test:
-	py.test
+	py.test -v
 
 clean:
 	find . -name '*~' -exec rm -rfv '{}' \+
