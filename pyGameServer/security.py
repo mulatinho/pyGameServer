@@ -11,7 +11,6 @@
 #
 # Author: Alexandre Mulatinho <alex@mulatinho.net>
 
-
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric import rsa
@@ -26,6 +25,7 @@ class Security(object):
 #    def __init__(self):
     
     def pk_new_key(self, password=None):
+        """ Generate a new private key """
         self._private_key = rsa.generate_private_key(
             public_exponent=65537,
             key_size=2048,
@@ -33,6 +33,7 @@ class Security(object):
         )
 
     def pk_save_key(self, key_path=None):
+        """ Save a private key into a file """
         pem = self._private_key.private_bytes(
             encoding=serialization.Encoding.PEM,
             format=serialization.PrivateFormat.TraditionalOpenSSL,
