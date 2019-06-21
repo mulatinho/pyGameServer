@@ -1,3 +1,5 @@
+NETWORK SCHEME
+
 rootserver ----> gameserver1   --> client4
              |                 |
 						 --> gameserver2 ----> client3
@@ -9,4 +11,12 @@ rootserver ----> gameserver1   --> client4
 														 --> clientN
 
 
-conn hashToken
+
+COMMUNICATION
+
+rootserver will make a PKI and generate:
+  - new private key
+  - new certificate authority
+  - issue certificates to gameservers
+  - and gameservers will emit certificates to clients
+  
