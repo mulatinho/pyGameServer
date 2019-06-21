@@ -2,7 +2,7 @@
 
 [![Build Status](https://api.travis-ci.org/mulatinho/pyGameServer.svg?branch=master)](http://travis-ci.org/mulatinho/pyGameServer)
 
-===================
+### Description
 
 This project is a lightweight python game server that allows connections from
 clients into game servers using digital certificates to increase security through
